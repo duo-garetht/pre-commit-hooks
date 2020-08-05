@@ -27,8 +27,10 @@ RUN wget https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux
 # Scala packages
 RUN wget https://github.com/coursier/coursier/releases/download/v2.0.0-RC6-24/coursier -O /bin/coursier \
     && chmod +x /bin/coursier
-ENV PATH="$PATH:/root/.local/share/coursier/bin"
-RUN coursier install scalafmt:2.6.4
+RUN coursier bootstrap org.scalameta:scalafmt-cli_2.13:2.6.4 \
+      -r sonatype:snapshots --main org.scalafmt.cli.Cli \
+      --standalone \
+      -o scalafmt
 
 # NPM packages
 # https://github.com/npm/npm/issues/20861#issuecomment-400786321
