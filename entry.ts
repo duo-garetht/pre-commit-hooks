@@ -210,9 +210,8 @@ const HOOKS: Record<HookName, LockableHook> = {
     include: /\.(html?|markdown|md|tsx?|ya?ml)$/,
   }),
   [HookName.Scalafmt]: createLockableHook({
-    action: sources => {
-      run("scalafmt", "--config-str 'preset=IntelliJ'", ...sources);
-    },
+    action: sources =>
+      run("scalafmt", "--config-str 'preset=IntelliJ'", ...sources),
     include: /\.(scala|sbt|sc)$/,
   }),
   [HookName.Shfmt]: createLockableHook({
